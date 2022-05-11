@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Прокат авто</h1>
+<div th:each="el : ${cars}">
+    <h3 th:text="${el.brand} + ${el.model}"></h3>
+</div>
+</body>
+</html>
