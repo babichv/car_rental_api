@@ -1,4 +1,4 @@
-package com.company.car_rental.models;
+package com.company.car_rental.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,16 +6,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Car {
+public class CarEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String brand;
     private String model;
+    private String number;
+    private String fuel;
+    private String body;
     private int price;
-    private Fuel fuel;
-    private Body body;
-
     public long getId(){
         return id;
     }
@@ -40,6 +40,14 @@ public class Car {
         this.model = model;
     }
 
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     public int getPrice() {
         return price;
     }
@@ -48,39 +56,30 @@ public class Car {
         this.price = price;
     }
 
-    public Fuel getFuel() {
+
+    public String getFuel() {
         return fuel;
     }
 
-    public void setFuel(Fuel fuel) {
+    public void setFuel(String fuel) {
         this.fuel = fuel;
     }
 
-    public Body getBody() {
+    public String getBody() {
         return body;
     }
 
-    public void setBody(Body body) {
+    public void setBody(String body) {
         this.body = body;
     }
 
-    protected Car(){}
-    public Car(String brand, String model, int price, Fuel fuel, Body body) {
+    protected CarEntity(){}
+    public CarEntity(String brand, String model, String fuel, String body, String number, int price) {
         this.brand = brand;
         this.model = model;
-        this.price = price;
         this.fuel = fuel;
         this.body = body;
+        this.number = number;
+        this.price = price;
     }
-}
-enum Fuel{
-    GAS,
-    DIESEL
-}
-enum Body{
-    SEDAN,
-    WAGON,
-    COUPE,
-    SUV,
-    CROSSOVER
 }
