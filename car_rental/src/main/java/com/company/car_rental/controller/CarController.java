@@ -6,6 +6,7 @@ import com.company.car_rental.exception.NumberAlreadyExistException;
 import com.company.car_rental.repository.CarRepository;
 import com.company.car_rental.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +17,11 @@ public class CarController {
 
     @Autowired
     private CarService carService;
-    
+
     @GetMapping("/")
     public ResponseEntity getCars(){
         try {
-            return ResponseEntity.ok("Server start!");
+            return ResponseEntity.ok(carService.findAll());
         }
         catch (Exception e){
             return ResponseEntity.badRequest().body("Error!");
@@ -39,6 +40,16 @@ public class CarController {
             return ResponseEntity.badRequest().body("Error!");
         }
     }
+     @PatchMapping("/{id}/edit")
+     public ResponseEntity update(@PathVariable long id, @RequestBody CarEntity car){
+        try {
+            carService.update(id, car);
+            return ResponseEntity.ok().body("Updated successful.");
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body("Error!");
+        }
+     }
 
     @GetMapping
     public ResponseEntity getOneCar(@RequestParam long id){
