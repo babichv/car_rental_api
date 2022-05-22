@@ -3,21 +3,36 @@ package com.company.car_rental.service;
 import com.company.car_rental.entity.CarEntity;
 import com.company.car_rental.exception.CarNotFoundException;
 import com.company.car_rental.exception.NumberAlreadyExistException;
-import com.company.car_rental.model.Car;
 import com.company.car_rental.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CarService {
+
     @Autowired
     CarRepository carRepository;
 
     public Iterable<CarEntity> findAll() throws CarNotFoundException {
-        if (carRepository.findAll() == null){
+        Iterable<CarEntity> cars = carRepository.findAll();
+        if (cars == null){
             throw new CarNotFoundException("Cars not found");
         }
-        return carRepository.findAll();
+        return cars;
+    }
+
+    public Iterable<CarEntity> findAllByBrandAndModel(String brand, String model) throws CarNotFoundException {
+        Iterable<CarEntity> cars;
+        if (model == "" || model == null){
+            cars = carRepository.findAllByBrand(brand);
+        }
+        else {
+            cars = carRepository.findAllByBrandAndModel(brand, model);
+        }
+        if (cars == null){
+            throw new CarNotFoundException("Car not found");
+        }
+        return cars;
     }
 
     public CarEntity create(CarEntity car) throws NumberAlreadyExistException {
@@ -42,15 +57,15 @@ public class CarService {
         return id;
     }
 
-    public Car findOne(long id) throws CarNotFoundException {
+    public CarEntity findOne(long id) throws CarNotFoundException {
         CarEntity car = carRepository.findById(id).get();
         if (car == null){
             throw new CarNotFoundException("Car not found");
         }
-        return Car.toModel(car);
+        return car;
     }
 
-    public long delete(long id) throws CarNotFoundException {
+    public long delete(long id) {
         carRepository.deleteById(id);
         return id;
     }
