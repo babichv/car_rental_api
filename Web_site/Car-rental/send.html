@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form to JSON with jQuery</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+  <header class="header">
+        
+    <div class="header-first">
+        <div class="container">
+            <div class="header-logo">
+                <img src="/img/Logo.png" alt="logo">
+            </div>
+            <a class="header__tel" href="tel:+380661111111">+380661111111</a>
+        </div>
+    </div>
+    <div class="header-second">
+        <div class="container">
+            <nav>
+              <ul class="header__nav">
+                <li><a href="/index.html">Авто</a></li>
+                <li><a href="./search.html" >Пошук</a></li>
+                <li><a href="./send.html">Додавання авто до бази</a></li>
+            </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+<section class="send-auto">
+  <div class="send">
+    <div class="send-content">
+      <h1>Додавання авто до бази</h1>
+      <form id="myForm" class="send-form">
+
+        
+        <div class="form-row">
+            <label for="brand">Марка: *</label><br />
+            <input type="text" name="brand" id="brand" class="form-input-field" placeholder="Марка" required>
+          </div>
+        <div class="form-row">
+            <label for="model">Модель: *</label><br />
+            <input type="text" name="model" id="model" class="form-input-field" placeholder="Модель" required>
+          </div>
+          <div class="form-row">
+            <label for="body">Тип кузова: *</label><br />
+            <input type="text" name="body" id="body" class="form-input-field" placeholder="Тип кузова" required>
+          </div>
+          <div class="form-row">
+            <label for="number">Номерний знак: *</label><br />
+            <input type="text" name="number" id="number" class="form-input-field" placeholder="Номерний знак" required>
+          </div>
+        <div class="form-row">
+          <label for="color">Топливо: *</label><br />
+          <input type="text" name="fuel" id="Колір" class="form-input-field" placeholder="Топливо" required>
+        </div>
+        <div class="form-row">
+          <label for="rate">Ціна: *</label><br />
+          <input type="number" name="price" id="rate" class="form-input-field" placeholder="Ціна" required>
+        </div>
+        <div class="form-row">
+          <input id="form-subm" type="submit" name="submit" value="Додати" class="form-submit-btn btn-info">
+        </div>
+      </form>
+
+      <div class="results">
+        <p class="result-json-output"></p>
+      </div>
+    </div>
+</div>
+</section>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="./form-to-json.js" charset="utf-8"></script>
+  <script src="./script.js" charset="utf-8"></script> -->
+  <script src="js/send.js" charset="utf-8"></script>
+</body>
+
+</html>

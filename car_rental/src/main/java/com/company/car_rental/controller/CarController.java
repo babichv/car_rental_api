@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/cars")
 public class CarController {
@@ -35,8 +36,8 @@ public class CarController {
         }
     }
 
-    @GetMapping
-    public ResponseEntity getCar(@RequestParam long id){
+    @GetMapping("/{id}")
+    public ResponseEntity getCar(@PathVariable long id){
         try {
             return ResponseEntity.ok(carService.findOne(id));
         }
@@ -48,7 +49,7 @@ public class CarController {
         }
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity create(@RequestBody CarEntity car){
         try {
             carService.create(car);
@@ -60,7 +61,7 @@ public class CarController {
         }
     }
 
-    @PatchMapping("/{id}/edit")
+    @PutMapping("/{id}/edit")
     public ResponseEntity update(@PathVariable long id, @RequestBody CarEntity car){
         try {
             carService.update(id, car);
